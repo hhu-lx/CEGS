@@ -1,0 +1,7 @@
+name: price_load_mix
+weights:
+  price: 0.5
+  load: 0.3
+  carbon: 0.1
+  latency: 0.1
+allow_cross_region: true

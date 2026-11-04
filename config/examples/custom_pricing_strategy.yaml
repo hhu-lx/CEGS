@@ -1,0 +1,7 @@
+name: grid_responsive_price
+base_price: 0.45
+local_load_coefficient: 0.0002
+compute_load_coefficient: 0.002
+voltage_deviation_coefficient: 1.5
+minimum_price: 0.20
+maximum_price: 1.50

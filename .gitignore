@@ -1,0 +1,30 @@
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.pytest-tmp/
+pytest-cache-files-*/
+
+# Local tooling and editor state
+.idea/
+.codex/
+.codex_tmp/
+.dsh-acl-out/
+.superpowers/sdd/
+
+# Local credentials and environment files
+.aws/
+.env
+.env.*
+
+# Generated runtime reports and logs
+reports/*.csv
+reports/*.svg
+reports/*.png
+pytest-*.out
+pytest-*.err
+
+# Local build metadata
+*.egg-info/
+node_modules/

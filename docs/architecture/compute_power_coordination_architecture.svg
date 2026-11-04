@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1769c2"/></marker>
+    <marker id="orangeArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ef7d16"/></marker>
+    <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1d9b59"/></marker>
+    <style>
+      .title{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:700;fill:#102a5c}
+      .subtitle{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:600;fill:#1769c2}
+      .zoneTitle{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:700;font-size:25px;fill:#fff}
+      .label{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:700;font-size:18px;fill:#102a5c}
+      .small{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:600;font-size:14px;fill:#183d72}
+      .tiny{font-family:Arial,'Microsoft YaHei',sans-serif;font-weight:600;font-size:13px;fill:#183d72}
+      .zone{stroke:#1769c2;stroke-width:2;rx:14}
+      .card{fill:#f7fbff;stroke:#6aa9e8;stroke-width:1.5;rx:10}
+      .stateCard{fill:#edf7fb;stroke:#36a6b1;stroke-width:1.5;rx:10}
+      .decisionCard{fill:#f3efff;stroke:#7e64cc;stroke-width:1.5;rx:10}
+      .orangeCard{fill:#fff3e7;stroke:#f08a29;stroke-width:1.5;rx:10}
+      .flow{fill:none;stroke:#1769c2;stroke-width:3;marker-end:url(#blueArrow)}
+      .control{fill:none;stroke:#ef7d16;stroke-width:3;marker-end:url(#orangeArrow)}
+      .feedback{fill:none;stroke:#1d9b59;stroke-width:3;marker-end:url(#greenArrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#ffffff"/>
+  <text x="800" y="45" text-anchor="middle" class="title" font-size="35">Overall Architecture of the Compute–Power Coordination Simulation Platform</text>
+  <text x="800" y="80" text-anchor="middle" class="subtitle" font-size="21">Closed-loop coordination of computing workloads, power systems, prices, and carbon signals</text>
+
+  <!-- Zone headers -->
+  <rect x="20" y="120" width="300" height="55" rx="12" fill="#1769c2"/><text x="170" y="155" text-anchor="middle" class="zoneTitle">Inputs &amp; Scenario Configuration</text>
+  <rect x="340" y="120" width="420" height="55" rx="12" fill="#1593a5"/><text x="550" y="155" text-anchor="middle" class="zoneTitle">Unified Simulation State Layer</text>
+  <rect x="780" y="120" width="430" height="55" rx="12" fill="#5740a5"/><text x="995" y="155" text-anchor="middle" class="zoneTitle">Coordination Decision Hub</text>
+  <rect x="1230" y="120" width="350" height="55" rx="12" fill="#287da9"/><text x="1405" y="155" text-anchor="middle" class="zoneTitle">Execution, Monitoring &amp; Results</text>
+
+  <!-- Input zone -->
+  <rect x="20" y="175" width="300" height="650" class="zone" fill="#eef6ff"/>
+  <g class="card"><rect x="38" y="195" width="264" height="82"/><text x="170" y="228" text-anchor="middle" class="label">Task Requests &amp; Arrivals</text><text x="170" y="253" text-anchor="middle" class="small">workload generation</text></g>
+  <g class="card"><rect x="38" y="295" width="264" height="82"/><text x="170" y="328" text-anchor="middle" class="label">Data Centers &amp; Compute</text><text x="170" y="353" text-anchor="middle" class="small">compute, GPU, bandwidth</text></g>
+  <g class="card"><rect x="38" y="395" width="264" height="82"/><text x="170" y="428" text-anchor="middle" class="label">IEEE 39-Bus Topology</text><text x="170" y="453" text-anchor="middle" class="small">buses, lines, generators</text></g>
+  <g class="card"><rect x="38" y="495" width="264" height="82"/><text x="170" y="528" text-anchor="middle" class="label">Load / Wind-PV / Price</text><text x="170" y="553" text-anchor="middle" class="small">time-series scenarios</text></g>
+  <g class="card"><rect x="38" y="595" width="264" height="82"/><text x="170" y="628" text-anchor="middle" class="label">Configuration &amp; Validation</text><text x="170" y="653" text-anchor="middle" class="small">platform.yaml and checks</text></g>
+  <g class="card"><rect x="38" y="710" width="264" height="82"/><text x="170" y="743" text-anchor="middle" class="label">Scenario Constraints</text><text x="170" y="768" text-anchor="middle" class="small">deadlines and limits</text></g>
+
+  <!-- State zone -->
+  <rect x="340" y="175" width="420" height="650" class="zone" fill="#effafb"/>
+  <g class="stateCard"><rect x="365" y="205" width="110" height="100"/><text x="420" y="242" text-anchor="middle" class="label">Task &amp;</text><text x="420" y="267" text-anchor="middle" class="label">Compute State</text></g>
+  <g class="stateCard"><rect x="495" y="205" width="110" height="100"/><text x="550" y="242" text-anchor="middle" class="label">Nodal Load</text><text x="550" y="267" text-anchor="middle" class="label">Mapping</text></g>
+  <g class="stateCard"><rect x="625" y="205" width="110" height="100"/><text x="680" y="242" text-anchor="middle" class="label">Grid</text><text x="680" y="267" text-anchor="middle" class="label">Operating State</text></g>
+  <path d="M475 255 H490" class="flow"/><path d="M605 255 H620" class="flow"/>
+  <text x="483" y="238" text-anchor="middle" class="tiny">compute load</text><text x="613" y="238" text-anchor="middle" class="tiny">power balance</text>
+  <g class="card"><rect x="365" y="350" width="110" height="75"/><text x="420" y="393" text-anchor="middle" class="label">Task Queue</text></g>
+  <g class="card"><rect x="495" y="350" width="110" height="75"/><text x="550" y="393" text-anchor="middle" class="label">Data-Center Power</text></g>
+  <g class="card"><rect x="625" y="350" width="110" height="75"/><text x="680" y="393" text-anchor="middle" class="label">Bus Voltage</text></g>
+  <g class="card"><rect x="365" y="445" width="110" height="75"/><text x="420" y="488" text-anchor="middle" class="label">Line Flows</text></g>
+  <g class="card"><rect x="495" y="445" width="110" height="75"/><text x="550" y="488" text-anchor="middle" class="label">Generator Output</text></g>
+  <g class="card"><rect x="625" y="445" width="110" height="75"/><text x="680" y="488" text-anchor="middle" class="label">Battery SOC</text></g>
+  <g class="card"><rect x="365" y="565" width="370" height="88"/><text x="550" y="603" text-anchor="middle" class="label">Available Wind/PV Power</text><text x="550" y="628" text-anchor="middle" class="label">&amp; Curtailment State</text></g>
+  <path d="M420 305 V345" class="flow"/><path d="M550 305 V345" class="flow"/><path d="M680 305 V345" class="flow"/>
+  <path d="M420 520 V560" class="flow"/><path d="M550 520 V560" class="flow"/><path d="M680 520 V560" class="flow"/>
+
+  <!-- Decision zone -->
+  <rect x="780" y="175" width="430" height="650" class="zone" fill="#f7f4ff"/>
+  <g class="orangeCard"><rect x="805" y="200" width="380" height="52"/><text x="995" y="232" text-anchor="middle" class="label">Cost · Carbon · Curtailment · Peak Shaving · Delay</text></g>
+  <g class="decisionCard"><rect x="805" y="285" width="82" height="72"/><text x="846" y="315" text-anchor="middle" class="label">State</text><text x="846" y="340" text-anchor="middle" class="label">Perception</text></g>
+  <g class="decisionCard"><rect x="905" y="285" width="82" height="72"/><text x="946" y="315" text-anchor="middle" class="label">Objectives</text><text x="946" y="340" text-anchor="middle" class="label">&amp; Weights</text></g>
+  <g class="decisionCard"><rect x="1005" y="285" width="82" height="72"/><text x="1046" y="315" text-anchor="middle" class="label">Solution</text><text x="1046" y="340" text-anchor="middle" class="label">Search</text></g>
+  <g class="decisionCard"><rect x="1105" y="285" width="82" height="72"/><text x="1146" y="315" text-anchor="middle" class="label">Feasibility</text><text x="1146" y="340" text-anchor="middle" class="label">Validation</text></g>
+  <path d="M887 321 H900" class="flow"/><path d="M987 321 H1000" class="flow"/><path d="M1087 321 H1100" class="flow"/>
+  <path d="M995 252 V280" class="control"/>
+  <g class="decisionCard"><rect x="805" y="405" width="115" height="115"/><text x="862" y="442" text-anchor="middle" class="label">Heuristic</text><text x="862" y="468" text-anchor="middle" class="label">Scheduling</text><text x="862" y="495" text-anchor="middle" class="small">FCFS / balance</text></g>
+  <g class="decisionCard"><rect x="935" y="405" width="115" height="115"/><text x="992" y="442" text-anchor="middle" class="label">Local</text><text x="992" y="468" text-anchor="middle" class="label">Optimization</text><text x="992" y="495" text-anchor="middle" class="small">alternating solve</text></g>
+  <g class="decisionCard"><rect x="1065" y="405" width="115" height="115"/><text x="1122" y="442" text-anchor="middle" class="label">Global</text><text x="1122" y="468" text-anchor="middle" class="label">Optimization</text><text x="1122" y="495" text-anchor="middle" class="small">joint COPT</text></g>
+  <path d="M1046 357 V385 H862 V400" class="flow"/><path d="M1046 357 V400" class="flow"/><path d="M1046 357 V385 H1122 V400" class="flow"/>
+  <g class="decisionCard"><rect x="805" y="565" width="375" height="82"/><text x="992" y="600" text-anchor="middle" class="label">Task Placement + Start Time</text><text x="992" y="627" text-anchor="middle" class="label">+ Power Schedule</text></g>
+  <path d="M862 520 V545 H992 V560" class="flow"/><path d="M992 520 V560" class="flow"/><path d="M1122 520 V545 H992 V560" class="flow"/>
+
+  <!-- Execution zone -->
+  <rect x="1230" y="175" width="350" height="650" class="zone" fill="#eff8fc"/>
+  <g class="card"><rect x="1250" y="205" width="190" height="72"/><text x="1345" y="235" text-anchor="middle" class="label">Task Execution &amp;</text><text x="1345" y="260" text-anchor="middle" class="label">Data-Center Simulation</text></g>
+  <g class="card"><rect x="1455" y="205" width="105" height="72"/><text x="1507" y="235" text-anchor="middle" class="label">Energy &amp;</text><text x="1507" y="260" text-anchor="middle" class="label">Carbon</text></g>
+  <g class="orangeCard"><rect x="1250" y="315" width="190" height="72"/><text x="1345" y="345" text-anchor="middle" class="label">Generator / Renewable</text><text x="1345" y="370" text-anchor="middle" class="label">/ Storage Dispatch</text></g>
+  <g class="card"><rect x="1455" y="315" width="105" height="72"/><text x="1507" y="345" text-anchor="middle" class="label">Renewable</text><text x="1507" y="370" text-anchor="middle" class="label">Curtailment</text></g>
+  <g class="card"><rect x="1250" y="425" width="190" height="72"/><text x="1345" y="455" text-anchor="middle" class="label">AC Power Flow &amp;</text><text x="1345" y="480" text-anchor="middle" class="label">Security Validation</text></g>
+  <g class="card"><rect x="1455" y="425" width="105" height="72"/><text x="1507" y="455" text-anchor="middle" class="label">Price &amp;</text><text x="1507" y="480" text-anchor="middle" class="label">Nodal Signals</text></g>
+  <g class="card"><rect x="1250" y="535" width="190" height="72"/><text x="1345" y="565" text-anchor="middle" class="label">Statistics, Reports</text><text x="1345" y="590" text-anchor="middle" class="label">&amp; Visualization</text></g>
+  <g class="card"><rect x="1455" y="535" width="105" height="72"/><text x="1507" y="565" text-anchor="middle" class="label">Optimization</text><text x="1507" y="590" text-anchor="middle" class="label">Results</text></g>
+  <path d="M1210 606 H1245" class="control"/><path d="M1440 241 H1450" class="flow"/><path d="M1345 277 V310" class="control"/><path d="M1440 351 H1450" class="flow"/><path d="M1345 387 V420" class="control"/><path d="M1440 461 H1450" class="flow"/><path d="M1345 497 V530" class="flow"/><path d="M1440 571 H1450" class="flow"/>
+
+  <!-- Cross-zone arrows -->
+  <path d="M320 235 H335" class="flow"/><path d="M320 335 H335" class="flow"/><path d="M320 435 H335" class="flow"/><path d="M320 535 H335" class="flow"/><path d="M320 635 H335" class="flow"/>
+  <text x="327" y="220" text-anchor="middle" class="tiny">requirements</text><text x="327" y="320" text-anchor="middle" class="tiny">parameters</text><text x="327" y="420" text-anchor="middle" class="tiny">topology</text><text x="327" y="520" text-anchor="middle" class="tiny">time series</text><text x="327" y="620" text-anchor="middle" class="tiny">constraints</text>
+  <path d="M760 500 H775" class="flow"/><path d="M1210 606 H1225" class="control"/>
+  <path d="M760 270 H775" class="feedback"/><text x="768" y="250" text-anchor="middle" class="tiny">shared state</text>
+  <path d="M1230 680 C1100 720 900 720 760 680" class="feedback"/><text x="990" y="713" text-anchor="middle" class="small">rolling update / next-state feedback</text>
+
+  <!-- Bottom loop -->
+  <rect x="20" y="850" width="1560" height="110" rx="14" fill="#eef6ff" stroke="#6aa9e8" stroke-width="2"/>
+  <text x="80" y="910" class="label" font-size="20">Closed-Loop Coordination Flow</text>
+  <g><rect x="300" y="880" width="170" height="50" rx="22" fill="#1769c2"/><text x="385" y="912" text-anchor="middle" fill="#fff" class="label">Workload Generation</text></g>
+  <g><rect x="500" y="880" width="170" height="50" rx="22" fill="#1593a5"/><text x="585" y="912" text-anchor="middle" fill="#fff" class="label">Load Mapping</text></g>
+  <g><rect x="700" y="880" width="170" height="50" rx="22" fill="#287da9"/><text x="785" y="912" text-anchor="middle" fill="#fff" class="label">Power Simulation</text></g>
+  <g><rect x="900" y="880" width="170" height="50" rx="22" fill="#5740a5"/><text x="985" y="912" text-anchor="middle" fill="#fff" class="label">Coordination Decision</text></g>
+  <g><rect x="1100" y="880" width="210" height="50" rx="22" fill="#1769c2"/><text x="1205" y="912" text-anchor="middle" fill="#fff" class="label">Task &amp; Device Execution</text></g>
+  <path d="M470 905 H495" class="flow"/><path d="M670 905 H695" class="flow"/><path d="M870 905 H895" class="flow"/><path d="M1070 905 H1095" class="flow"/><path d="M1310 940 C1000 975 450 975 385 935" class="feedback"/>
+  <g><rect x="1370" y="875" width="180" height="65" fill="#fff" stroke="#6aa9e8" stroke-width="1.5" rx="8"/><path d="M1390 895 H1430" class="flow"/><text x="1440" y="900" class="tiny">Data flow</text><path d="M1390 915 H1430" class="control"/><text x="1440" y="920" class="tiny">Control commands</text><path d="M1390 935 H1430" class="feedback"/><text x="1440" y="940" class="tiny">Feedback flow</text></g>
+</svg>

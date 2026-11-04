@@ -1,0 +1,6 @@
+start_hour,end_hour,price,label
+0,7,0.30,valley
+7,11,0.80,high
+11,17,0.50,flat
+17,21,1.00,peak
+21,24,0.30,valley

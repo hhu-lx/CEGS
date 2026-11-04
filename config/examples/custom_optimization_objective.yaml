@@ -1,0 +1,8 @@
+name: custom_multi_objective
+weights:
+  cost: 1.0
+  carbon: 0.5
+  delay: 0.2
+  peak_shaving: 2.0
+  renewable_curtailment: 3.0
+  storage_degradation: 0.1

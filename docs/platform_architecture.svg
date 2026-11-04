@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1320" viewBox="0 0 1800 1320">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6 L1,11 z" fill="#536b83"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #203247; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 17px; fill: #64768a; }
+      .layer-title { font-size: 19px; font-weight: 700; fill: #35516d; }
+      .head { font-size: 21px; font-weight: 700; }
+      .body { font-size: 17px; }
+      .small { font-size: 15px; fill: #526579; }
+      .tiny { font-size: 14px; fill: #5e7083; }
+      .layer { fill: #f8fafc; stroke: #aab9c8; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #6e879e; stroke-width: 2; }
+      .blue { fill: #eaf2f9; stroke: #5d7f9f; stroke-width: 2; }
+      .teal { fill: #eaf5f3; stroke: #5c918a; stroke-width: 2; }
+      .gold { fill: #fbf4e8; stroke: #b28a4b; stroke-width: 2; }
+      .line { fill: none; stroke: #536b83; stroke-width: 2.5; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #8496a8; stroke-width: 2; stroke-dasharray: 8 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1800" height="1320" fill="#ffffff"/>
+  <text x="900" y="58" text-anchor="middle" class="title">算电协同仿真平台总体架构</text>
+  <text x="900" y="91" text-anchor="middle" class="subtitle">面向任务调度、数据中心资源管理与电网运行协同分析的分层架构</text>
+
+  <!-- Layer 1 -->
+  <rect x="55" y="125" width="1690" height="255" rx="12" class="layer"/>
+  <text x="82" y="158" class="layer-title">用户交互与数据输入层</text>
+  <rect x="92" y="190" width="260" height="135" rx="8" class="blue"/>
+  <text x="222" y="228" text-anchor="middle" class="head">平台用户</text>
+  <text x="222" y="260" text-anchor="middle" class="body">配置参数 · 上传文件</text>
+  <text x="222" y="290" text-anchor="middle" class="body">启动 / 结束仿真</text>
+
+  <rect x="420" y="190" width="330" height="135" rx="8" class="box"/>
+  <text x="585" y="226" text-anchor="middle" class="head">Web 前端</text>
+  <text x="585" y="258" text-anchor="middle" class="body">仿真参数与策略选择</text>
+  <text x="585" y="289" text-anchor="middle" class="body">运行状态 · 曲线结果</text>
+
+  <rect x="820" y="183" width="405" height="150" rx="8" class="box"/>
+  <text x="1022" y="219" text-anchor="middle" class="head">用户输入文件</text>
+  <text x="1022" y="251" text-anchor="middle" class="body">任务 CSV / XLSX · 峰谷电价 CSV</text>
+  <text x="1022" y="281" text-anchor="middle" class="body">用户配置 YAML / JSON（可选）</text>
+  <text x="1022" y="309" text-anchor="middle" class="tiny">上传数据优先；未覆盖项采用平台默认值</text>
+
+  <rect x="1295" y="190" width="405" height="135" rx="8" class="teal"/>
+  <text x="1497" y="226" text-anchor="middle" class="head">平台基础数据</text>
+  <text x="1497" y="258" text-anchor="middle" class="body">电网拓扑 · 负荷 / 风光时序</text>
+  <text x="1497" y="289" text-anchor="middle" class="body">数据中心与设备资源配置</text>
+  <path d="M352 257 H410" class="line"/>
+
+  <!-- Layer 2 -->
+  <rect x="55" y="405" width="1690" height="155" rx="12" class="layer"/>
+  <text x="82" y="438" class="layer-title">接口服务与配置管理层</text>
+  <rect x="120" y="462" width="390" height="72" rx="8" class="box"/>
+  <text x="315" y="491" text-anchor="middle" class="head">FastAPI 服务接口</text>
+  <text x="315" y="518" text-anchor="middle" class="small">页面路由 · 配置提交 · 仿真控制 · 结果查询</text>
+  <rect x="620" y="462" width="510" height="72" rx="8" class="blue"/>
+  <text x="875" y="491" text-anchor="middle" class="head">输入解析与配置合并</text>
+  <text x="875" y="518" text-anchor="middle" class="small">校验上传文件 · 合并用户设置与平台默认配置</text>
+  <rect x="1240" y="462" width="390" height="72" rx="8" class="box"/>
+  <text x="1435" y="491" text-anchor="middle" class="head">仿真会话管理</text>
+  <text x="1435" y="518" text-anchor="middle" class="small">创建运行实例 · 状态与统计信息管理</text>
+  <path d="M510 498 H610" class="line"/>
+  <path d="M1130 498 H1230" class="line"/>
+  <path d="M585 325 V447 H315 V458" class="line"/>
+  <path d="M1022 333 V447 H875 V458" class="line"/>
+  <path d="M1497 325 V443 H875 V458" class="dash"/>
+
+  <!-- Layer 3 -->
+  <rect x="55" y="585" width="1690" height="390" rx="12" class="layer"/>
+  <text x="82" y="619" class="layer-title">仿真计算与协同决策层</text>
+  <rect x="100" y="655" width="1570" height="74" rx="8" class="blue"/>
+  <text x="885" y="686" text-anchor="middle" class="head">仿真引擎（SimPy）</text>
+  <text x="885" y="713" text-anchor="middle" class="small">仿真时钟 · 任务到达事件 · 调度队列 · 组件协同与状态推进</text>
+
+  <rect x="100" y="770" width="455" height="165" rx="8" class="box"/>
+  <text x="327" y="805" text-anchor="middle" class="head">任务调度与优化</text>
+  <text x="327" y="837" text-anchor="middle" class="body">启发式调度</text>
+  <text x="327" y="866" text-anchor="middle" class="body">局部优化（分层） · 全局优化（联合）</text>
+  <text x="327" y="906" text-anchor="middle" class="tiny">资源可行性筛选与数据中心选择</text>
+
+  <rect x="635" y="770" width="455" height="165" rx="8" class="teal"/>
+  <text x="862" y="805" text-anchor="middle" class="head">数据中心与网络仿真</text>
+  <text x="862" y="837" text-anchor="middle" class="body">计算 / GPU 资源分配与任务执行</text>
+  <text x="862" y="866" text-anchor="middle" class="body">带宽资源管理 · 执行状态跟踪</text>
+  <text x="862" y="906" text-anchor="middle" class="tiny">数据中心设备功率映射采用预定义关系</text>
+
+  <rect x="1170" y="770" width="500" height="165" rx="8" class="gold"/>
+  <text x="1420" y="805" text-anchor="middle" class="head">电网与能源仿真</text>
+  <text x="1420" y="837" text-anchor="middle" class="body">电网拓扑 / 潮流 · 基础负荷与常规机组</text>
+  <text x="1420" y="866" text-anchor="middle" class="body">风光出力 · 储能 · 数据中心计算负荷</text>
+  <text x="1420" y="906" text-anchor="middle" class="tiny">峰谷电价输入与电网运行状态计算</text>
+  <path d="M885 729 V750 H327 V760" class="line"/>
+  <path d="M885 729 V760" class="line"/>
+  <path d="M885 729 V750 H1420 V760" class="line"/>
+  <path d="M555 851 H625" class="dash"/>
+  <path d="M1090 851 H1160" class="dash"/>
+
+  <!-- Layer 4 -->
+  <rect x="55" y="1000" width="1690" height="235" rx="12" class="layer"/>
+  <text x="82" y="1034" class="layer-title">结果展示与数据导出层</text>
+  <rect x="105" y="1060" width="900" height="130" rx="8" class="box"/>
+  <text x="555" y="1094" text-anchor="middle" class="head">前端结果面板：四类核心曲线</text>
+  <rect x="130" y="1112" width="195" height="54" rx="6" class="blue"/>
+  <text x="227" y="1146" text-anchor="middle" class="body">总发电曲线</text>
+  <rect x="345" y="1112" width="195" height="54" rx="6" class="blue"/>
+  <text x="442" y="1146" text-anchor="middle" class="body">总负荷曲线</text>
+  <rect x="560" y="1112" width="195" height="54" rx="6" class="blue"/>
+  <text x="657" y="1146" text-anchor="middle" class="body">任务统计曲线</text>
+  <rect x="775" y="1112" width="205" height="54" rx="6" class="blue"/>
+  <text x="877" y="1146" text-anchor="middle" class="body">算力功率曲线</text>
+
+  <rect x="1060" y="1060" width="270" height="130" rx="8" class="teal"/>
+  <text x="1195" y="1098" text-anchor="middle" class="head">运行状态</text>
+  <text x="1195" y="1132" text-anchor="middle" class="body">电网健康状态</text>
+  <text x="1195" y="1162" text-anchor="middle" class="small">任务与仿真状态</text>
+
+  <rect x="1385" y="1060" width="310" height="130" rx="8" class="box"/>
+  <text x="1540" y="1098" text-anchor="middle" class="head">结果文件导出</text>
+  <text x="1540" y="1132" text-anchor="middle" class="body">CSV · XLSX · JSON</text>
+  <text x="1540" y="1162" text-anchor="middle" class="small">统计数据 · 任务执行明细 · 图表</text>
+
+  <path d="M885 935 V985 H555 V1050" class="line"/>
+  <path d="M1420 935 V975 H1195 V1050" class="line"/>
+  <path d="M1420 975 H1540 V1050" class="line"/>
+  <text x="900" y="1283" text-anchor="middle" class="tiny">图：平台功能模块及主要数据流（实线表示控制 / 结果流，虚线表示配置或协同关系）</text>
+</svg>

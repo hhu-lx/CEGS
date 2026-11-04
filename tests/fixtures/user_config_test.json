@@ -1,0 +1,4 @@
+{
+  "simulation": {"step_seconds": 1},
+  "optimization": {"mode": "joint"}
+}

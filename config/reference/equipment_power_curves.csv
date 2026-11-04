@@ -1,0 +1,13 @@
+model,equipment_type,utilization,power_kw
+GPU-H100,compute,0.0,0.35
+GPU-H100,compute,0.5,0.55
+GPU-H100,compute,1.0,0.7
+Chiller-500kW,cooling,0.0,35.0
+Chiller-500kW,cooling,0.5,120.0
+Chiller-500kW,cooling,1.0,220.0
+UPS-1MW,power_distribution,0.0,8.0
+UPS-1MW,power_distribution,0.5,18.0
+UPS-1MW,power_distribution,1.0,35.0
+ToR-48p,network,0.0,0.1
+ToR-48p,network,0.5,0.18
+ToR-48p,network,1.0,0.28

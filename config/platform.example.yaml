@@ -1,0 +1,89 @@
+# 最小可复现实验配置。将 optimization.mode 改为 global 可启用全局 COPT。
+grid:
+  base_mva: 100.0
+  load_factor: 1.0
+  time_series_start_offset_seconds: 0
+  pv_capacity_mw: 4377.96
+  wind_capacity_mw: 3752.54
+  base_generation_capacity_mw: 300.0
+  external_grid_max_import_mw: 5000.0
+  pv_bus: 10
+  wind_bus: 20
+  load_file: config/use_second.csv
+  pv_file: config/sun_second.csv
+  wind_file: config/wind_second.csv
+  base_generation_file: config/base_generation_pu_second_smoothed.csv
+
+reference_tables:
+  equipment_power_curves: config/reference/equipment_power_curves.csv
+  equipment_power_timeseries: config/reference/equipment_power_timeseries.csv
+
+data_centers:
+  - id: DC1
+    name: 示例数据中心
+    region: region_a
+    grid_bus_id: 3
+    total_compute: 160.0
+    total_bandwidth: 2000.0
+    power_scale: 2.0
+    pue: 1.15
+    device_pool:
+      - {model: GPU-H100, equipment_type: compute, quantity: 2, compute_tflops: 80, rated_power_kw: 0.70, idle_power_kw: 0.35}
+      - {model: Chiller-500kW, equipment_type: cooling, quantity: 1, rated_power_kw: 220, idle_power_kw: 35}
+      - {model: UPS-1MW, equipment_type: power_distribution, quantity: 1, rated_power_kw: 35, idle_power_kw: 8}
+      - {model: ToR-48p, equipment_type: network, quantity: 2, rated_power_kw: 0.28, idle_power_kw: 0.1}
+
+simulation:
+  time_unit: seconds
+  start_datetime: "2026-09-22T16:00:00"
+  duration_hours: 1
+  step_seconds: 30
+  # 任务到达保持秒级精度；统计和重优化按较长仿真间隔执行，避免每秒调用求解器
+  stats_interval_seconds: 60
+  renewable_optimization_interval_seconds: 900
+  report_interval_seconds: 300
+  cpf_interval_seconds: 900
+  power_flow_interval_seconds: 900
+  # 每个仿真秒等待约1/60秒：真实1秒推进约60个仿真秒
+  time_scale: 0.0166667
+
+synthetic_data:
+  seed: 42
+
+storages:
+  - id: storage-1
+    bus_id: 10
+    capacity_mwh: 10.0
+    max_power_mw: 2.0
+    initial_soc_mwh: 5.0
+    min_soc_mwh: 1.0
+
+storage_control:
+  deadband_mw: 0.5
+  reference_alpha: 0.02
+  optimization_interval_seconds: 60
+
+optimization:
+  enabled: true
+  mode: local
+  objective: min_cost
+  load_balance_weight: 1.0
+  minimum_active_center_tasks: 1
+  task_batch_interval_seconds: 300
+  global_time_limit_seconds: 2.0
+  global_relative_mip_gap: 0.03
+  forecast_horizon_hours: 2.0
+  forecast_step_minutes: 5.0
+  weights: {cost: 1.0, carbon: 1.0, delay: 0.0}
+
+scheduling:
+  batch_interval_seconds: 5
+  max_tasks_per_batch: 128
+
+electricity_pricing:
+  mode: fixed_tou
+  file: config/time_of_use_pricing.csv
+
+tasks:
+  excel_file: config/task_data_completed.csv
+  default_region: region_a
